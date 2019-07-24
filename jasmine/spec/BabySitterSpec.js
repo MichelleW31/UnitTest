@@ -55,4 +55,14 @@ describe('Babysitter\'s Pay', () => {
 
     expect(result).toBe('$1360');
   });
+
+  it('Calculates babysitters pay based off of shifts and pay rate', () => {
+    const shift1 = {startTime: '5pm', endTime: '11pm', payRate: '$5'};
+    const shift2 = {startTime: '11pm', endTime: '3am', payRate: '$10'};
+
+    const result = calculateTotalShift([shift1, shift2]);
+
+    expect(result).toBe('$70');
+
+  });
 });

@@ -4,6 +4,8 @@ checkFullHours = (shift) => {
 
   if(shift[0].length > 4 || shift[1].length > 4){
     isFullHours = false
+  }else{
+    isFullHours = true;
   }
 
   return isFullHours;
@@ -80,4 +82,36 @@ calculateTotalPay = (totalPayArray) => {
   totalPayArray.map(pay => totalPay += pay);
 
   return `$${totalPay}`;
+};
+
+calculateTotalShift = (shifts) => {
+  let startingTimeFrame = ['5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm', '12am', '1am', '2am', '3am', '4am'];
+  let totalPayArr= [];
+
+  shifts.map(shift => {
+    let startTime = shift.startTime;
+    let endTime = shift.endTime;
+    let payRate = shift.payRate;
+
+    let isFullHours = checkFullHours([startTime, endTime]);
+    let validHours = setStartEndTime(startTime, endTime);
+    const hoursWorked = calculateShiftHours(startTime, endTime);
+    let availableHours = removeHours(startTime, endTime, hoursWorked, startingTimeFrame);
+
+    if(!isFullHours){
+      return 'Please only enter full hours';
+    }else{
+      if(!validHours){
+        return `Start and/or end time are invalid for this shift: ${startTime} - ${endTime}`
+      }else{
+        if(availableHours === false){
+          return `${startTime} - ${endTime} shift not available.`;
+        }else{
+          startingTimeFrame = availableHours;
+          totalPayArr.push(calculateShiftPay(hoursWorked, payRate));
+        }
+      }
+    }
+  });
+  return calculateTotalPay(totalPayArr);
 };
