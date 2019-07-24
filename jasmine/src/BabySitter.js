@@ -88,10 +88,10 @@ calculateTotalShift = (shifts) => {
   let startingTimeFrame = ['5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm', '12am', '1am', '2am', '3am', '4am'];
   let totalPayArr= [];
 
-  shifts.map(shift => {
-    let startTime = shift.startTime;
-    let endTime = shift.endTime;
-    let payRate = shift.payRate;
+  for(let i = 0; i< shifts.length; i++){
+    let startTime = shifts[i].startTime;
+    let endTime = shifts[i].endTime;
+    let payRate = shifts[i].payRate;
 
     let isFullHours = checkFullHours([startTime, endTime]);
     let validHours = setStartEndTime(startTime, endTime);
@@ -112,6 +112,7 @@ calculateTotalShift = (shifts) => {
         }
       }
     }
-  });
+  }
+
   return calculateTotalPay(totalPayArr);
 };
