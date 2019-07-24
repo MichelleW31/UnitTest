@@ -37,8 +37,8 @@ describe('Babysitter\'s Time', () =>{
 
 describe('Babysitter\'s Pay', () => {
   it('Calculates total hours entered for shift', () => {
-    const result = calculateHours('11pm', '3am');
-    const result2 = calculateHours('7pm', '4am');
+    const result = calculateShiftHours('11pm', '3am');
+    const result2 = calculateShiftHours('7pm', '4am');
 
     expect(result).toBe(4);
     expect(result2).toBe(9);

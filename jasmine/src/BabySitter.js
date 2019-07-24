@@ -55,7 +55,7 @@ removeHours = (startTime, endTime, totalHours, availableHoursLeft) => {
 };
 
 //Calculates total number of hours in a shift.
-calculateHours = (startTime, endTime) => {
+calculateShiftHours = (startTime, endTime) => {
   let startingTime = Number(startTime.slice(0,-2));
   let endingTime = Number(endTime.slice(0,-2));
 
