@@ -49,4 +49,10 @@ describe('Babysitter\'s Pay', () => {
 
     expect(result).toBe(75)
   });
+
+  it('Calculates total pay for one night of work', () =>{
+    const result = calculateTotalPay(1300, 60);
+
+    expect(result).toBe('1360');
+  });
 });

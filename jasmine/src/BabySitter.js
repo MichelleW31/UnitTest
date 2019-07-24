@@ -72,3 +72,10 @@ calculateShiftPay = (shiftHours, payRate) => {
 
   return shiftHours * rate;
 };
+
+//Calculates total pay for all shifts
+calculateTotalPay = (shiftPayOne, shiftPayTwo) => {
+  let totalPay = shiftPayOne + shiftPayTwo;
+
+  return `${totalPay}`;
+};
