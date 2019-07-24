@@ -98,3 +98,13 @@ calculateTotalShift = (shifts) => {
 
   return calculateTotalPay(totalPayArr);
 };
+
+module.exports = {
+  checkFullHours: checkFullHours,
+  setStartEndTime: setStartEndTime,
+  removeHours: removeHours,
+  calculateShiftHours: calculateShiftHours,
+  calculateShiftPay: calculateShiftPay,
+  calculateTotalPay: calculateTotalPay,
+  calculateTotalShift: calculateTotalShift,
+};
