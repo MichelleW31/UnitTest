@@ -18,4 +18,12 @@ describe('Babysitter\'s Time', () =>{
     expect(result).toEqual(true);
     expect(result2).toBe( false);
   });
+
+  it('Sets end time', () => {
+    const result = setStartEndTime('5pm', '12am');
+    const result2 = setStartEndTime('5pm', '12pm');
+
+    expect(result).toEqual(true);
+    expect(result2).toBe(false);
+  });
 });

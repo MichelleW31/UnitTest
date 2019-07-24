@@ -15,7 +15,18 @@ setStartEndTime = (start, end) => {
   const startTimeOfDay = start.slice(-2);
   let validStart;
 
+  let endTimeInteger = Number(end.slice(0,-2));
+  const endTimeOfDay = end.slice(-2);
+  let validEnd;
+
   validStart = (startTimeOfDay === 'pm' && startTimeInteger >= 5 && start !== '12pm') || (startTimeOfDay === 'am' && startTimeInteger < 4) || start === '12am';
 
-  return validStart;
+  validEnd = (endTimeOfDay === 'pm' && endTimeInteger > 5 && end !== '12pm') || (endTimeOfDay === 'am' && endTimeInteger < 5) || end === '12am';
+
+  if(validStart === true && validEnd ===true){
+    return true
+  }else{
+    return false
+  }
+
 };
