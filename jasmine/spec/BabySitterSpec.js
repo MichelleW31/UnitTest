@@ -63,10 +63,15 @@ describe('Babysitter\'s Pay', () => {
     const shift3 = {startTime: '4pm', endTime: '11pm', payRate: '$5'};
     const shift4 = {startTime: '11pm', endTime: '3am', payRate: '$10'};
 
+    const shift5 = {startTime: '5pm', endTime: '11pm', payRate: '$5'};
+    const shift6 = {startTime: '11:15pm', endTime: '3am', payRate: '$10'};
+
     const result = calculateTotalShift([shift1, shift2]);
     const result2 = calculateTotalShift([shift3, shift4]);
+    const result3 = calculateTotalShift([shift5, shift6]);
 
     expect(result).toBe('$70');
     expect(result2).toBe('Start and/or end time are invalid for this shift: 4pm - 11pm');
+    expect(result3).toBe('Please only enter full hours');
   });
 });
