@@ -2,11 +2,7 @@
 checkFullHours = (shift) => {
   let isFullHours;
 
-  if(shift[0].length > 4 || shift[1].length > 4){
-    isFullHours = false
-  }else{
-    isFullHours = true;
-  }
+  isFullHours = !(shift[0].length > 4 || shift[1].length > 4);
 
   return isFullHours;
 };
@@ -25,17 +21,13 @@ setStartEndTime = (start, end) => {
 
   validEnd = (endTimeOfDay === 'pm' && endTimeInteger > 5 && end !== '12pm') || (endTimeOfDay === 'am' && endTimeInteger < 5) || end === '12am';
 
-  if(validStart === true && validEnd ===true){
-    return true
-  }else{
-    return false
-  }
+  return validStart === true && validEnd === true;
 };
 
 //Removes selected hours from array so they cant be selected more than once in one night.
 //Makes sure sitter is only calculating pay for one family a night.
 removeHours = (startTime, endTime, totalHours, availableHoursLeft) => {
-  let startIndex;
+  let startIndex ;
   let endIndex;
   let newArr;
 
@@ -63,9 +55,7 @@ calculateShiftHours = (startTime, endTime) => {
 
   if(endTime === '12am' || endingTime > startingTime){
     return endingTime - startingTime;
-  }else {
-    return (12 - startingTime) + endingTime;
-  }
+  }else return (12 - startingTime) + endingTime;
 };
 
 //Calculates pay for a shift
@@ -98,20 +88,12 @@ calculateTotalShift = (shifts) => {
     const hoursWorked = calculateShiftHours(startTime, endTime);
     let availableHours = removeHours(startTime, endTime, hoursWorked, startingTimeFrame);
 
-    if(!isFullHours){
-      return 'Please only enter full hours';
-    }else{
-      if(!validHours){
-        return `Start and/or end time are invalid for this shift: ${startTime} - ${endTime}`
-      }else{
-        if(availableHours === false){
-          return `${startTime} - ${endTime} shift not available.`;
-        }else{
-          startingTimeFrame = availableHours;
-          totalPayArr.push(calculateShiftPay(hoursWorked, payRate));
-        }
-      }
-    }
+    if(!isFullHours) return 'Please only enter full hours';
+    if(!validHours) return `Start and/or end time are invalid for this shift: ${startTime} - ${endTime}`;
+    if(availableHours === false) return `${startTime} - ${endTime} shift not available.`;
+
+    startingTimeFrame = availableHours;
+    totalPayArr.push(calculateShiftPay(hoursWorked, payRate));
   }
 
   return calculateTotalPay(totalPayArr);
