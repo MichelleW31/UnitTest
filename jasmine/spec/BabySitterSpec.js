@@ -34,3 +34,13 @@ describe('Babysitter\'s Time', () =>{
     expect(result).toEqual(['5pm','6pm', '7pm', '1am', '2am', '3am', '4am']);
   });
 });
+
+describe('Babysitter\'s Pay', () => {
+  it('Calculates total hours entered for shift', () => {
+    const result = calculateHours('11pm', '3am');
+    const result2 = calculateHours('7pm', '4am');
+
+    expect(result).toBe(4);
+    expect(result2).toBe(9);
+  });
+});
