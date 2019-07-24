@@ -26,4 +26,11 @@ describe('Babysitter\'s Time', () =>{
     expect(result).toEqual(true);
     expect(result2).toBe(false);
   });
+
+  it('Make hours unavailable to pick once they are included in a shift', () => {
+    let availableHoursLeft = ['5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm', '12am', '1am', '2am', '3am', '4am'];
+    const result = removeHours('8pm', '1am', 5, availableHoursLeft);
+
+    expect(result).toEqual(['5pm','6pm', '7pm', '1am', '2am', '3am', '4am']);
+  });
 });

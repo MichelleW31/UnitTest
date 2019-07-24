@@ -28,5 +28,28 @@ setStartEndTime = (start, end) => {
   }else{
     return false
   }
+};
 
+//Removes selected hours from array so they cant be selected more than once in one night.
+//Makes sure sitter is only calculating pay for one family a night.
+removeHours = (startTime, endTime, totalHours, availableHoursLeft) => {
+  let startIndex;
+  let endIndex;
+  let newArr;
+
+  availableHoursLeft.map((time, i) => {
+    if(startTime === time){
+      return startIndex = i;
+    }
+    if(endTime === time){
+      return endIndex = i;
+    }
+  });
+
+  if((endIndex - startIndex) === totalHours){
+    newArr = [...availableHoursLeft];
+    newArr.splice(startIndex, totalHours);
+  }else return false;
+
+  return newArr
 };
