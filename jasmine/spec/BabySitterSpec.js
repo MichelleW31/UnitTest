@@ -43,4 +43,10 @@ describe('Babysitter\'s Pay', () => {
     expect(result).toBe(4);
     expect(result2).toBe(9);
   });
+
+  it('Calculates pay based off of total hours and pay rate for shift', () => {
+    const result = calculateShiftPay(5, '$15');
+
+    expect(result).toBe(75)
+  });
 });

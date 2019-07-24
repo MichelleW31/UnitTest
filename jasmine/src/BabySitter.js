@@ -65,3 +65,10 @@ calculateShiftHours = (startTime, endTime) => {
     return (12 - startingTime) + endingTime;
   }
 };
+
+//Calculates pay for a shift
+calculateShiftPay = (shiftHours, payRate) => {
+  let rate = Number(payRate.slice(1));
+
+  return shiftHours * rate;
+};
