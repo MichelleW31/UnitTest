@@ -1,28 +1,28 @@
 //Check for full hours
 //Check that start time is valid
 //Check that end time is valid
-let test = require('../src/babySitter')
+let babysitter = require('../src/babySitter');
 
 describe('Babysitter\'s Time', () =>{
   it('Checks for full hours', () => {
-    const result = test.checkFullHours(['5:15pm','6am']);
-    const result2 = test.checkFullHours(['5pm','6:15am']);
+    const result = babysitter.checkFullHours(['5:15pm','6am']);
+    const result2 = babysitter.checkFullHours(['5pm','6:15am']);
 
     expect(result).toBe(false);
     expect(result2).toBe(false);
   });
 
   it('Sets start time', () => {
-    const result = test.setStartEndTime('12am', '1am');
-    const result2 = test.setStartEndTime('12pm', '1am');
+    const result = babysitter.setStartEndTime('12am', '1am');
+    const result2 = babysitter.setStartEndTime('12pm', '1am');
 
     expect(result).toEqual(true);
     expect(result2).toBe( false);
   });
 
   it('Sets end time', () => {
-    const result = test.setStartEndTime('5pm', '12am');
-    const result2 = test.setStartEndTime('5pm', '12pm');
+    const result = babysitter.setStartEndTime('5pm', '12am');
+    const result2 = babysitter.setStartEndTime('5pm', '12pm');
 
     expect(result).toEqual(true);
     expect(result2).toBe(false);
@@ -30,7 +30,7 @@ describe('Babysitter\'s Time', () =>{
 
   it('Make hours unavailable to pick once they are included in a shift', () => {
     let availableHoursLeft = ['5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm', '12am', '1am', '2am', '3am', '4am'];
-    const result = test.removeHours('8pm', '1am', 5, availableHoursLeft);
+    const result = babysitter.removeHours('8pm', '1am', 5, availableHoursLeft);
 
     expect(result).toEqual(['5pm','6pm', '7pm', '1am', '2am', '3am', '4am']);
   });
@@ -38,21 +38,21 @@ describe('Babysitter\'s Time', () =>{
 
 describe('Babysitter\'s Pay', () => {
   it('Calculates total hours entered for shift', () => {
-    const result = test.calculateShiftHours('11pm', '3am');
-    const result2 = test.calculateShiftHours('7pm', '4am');
+    const result = babysitter.calculateShiftHours('11pm', '3am');
+    const result2 = babysitter.calculateShiftHours('7pm', '4am');
 
     expect(result).toBe(4);
     expect(result2).toBe(9);
   });
 
   it('Calculates pay based off of total hours and pay rate for shift', () => {
-    const result = test.calculateShiftPay(5, '$15');
+    const result = babysitter.calculateShiftPay(5, '$15');
 
     expect(result).toBe(75)
   });
 
   it('Calculates total pay for one night of work', () =>{
-    const result = test.calculateTotalPay([1300, 60]);
+    const result = babysitter.calculateTotalPay([1300, 60]);
 
     expect(result).toBe('$1360');
   });
@@ -67,9 +67,9 @@ describe('Babysitter\'s Pay', () => {
     const shift5 = {startTime: '5pm', endTime: '11pm', payRate: '$5'};
     const shift6 = {startTime: '11:15pm', endTime: '3am', payRate: '$10'};
 
-    const result = test.calculateTotalShift([shift1, shift2]);
-    const result2 = test.calculateTotalShift([shift3, shift4]);
-    const result3 = test.calculateTotalShift([shift5, shift6]);
+    const result = babysitter.calculateTotalShift([shift1, shift2]);
+    const result2 = babysitter.calculateTotalShift([shift3, shift4]);
+    const result3 = babysitter.calculateTotalShift([shift5, shift6]);
 
     expect(result).toBe('$70');
     expect(result2).toBe('Start and/or end time are invalid for this shift: 4pm - 11pm');

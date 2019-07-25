@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "jasmine test/spec.js"
+    "test": "jasmine spec/babySitterSpec.js"
   },
   "repository": {
     "type": "git",
